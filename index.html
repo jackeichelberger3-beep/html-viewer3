@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML File Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">&lt;/&gt;</div>
+      <div class="brand-text">
+        <h1>HTML Viewer</h1>
+        <p id="fileName" class="filename">untitled.html</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <input type="file" id="fileInput" accept=".html,.htm,text/html" hidden />
+      <button id="openBtn" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M5 20h14v-2H5v2zM12 2l5 5h-3v6h-4V7H7l5-5z"/></svg>
+        Open File
+      </button>
+      <button id="copyBtn" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        Copy
+      </button>
+      <button id="saveBtn" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Save
+      </button>
+      <button id="wrapBtn" class="btn btn-outline">Wrap: Off</button>
+      <button id="clearBtn" class="btn btn-outline">Clear</button>
+      <button id="newTabBtn" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.3 9.29 1.42 1.42L19 6.41V10h2V3h-7z"/></svg>
+        New Tab
+      </button>
+    </div>
+
+    <div class="view-switch">
+      <button class="view-btn active" data-view="split">Split</button>
+      <button class="view-btn" data-view="code">Code</button>
+      <button class="view-btn" data-view="preview">Preview</button>
+    </div>
+
+    <button id="refreshBtn" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      Refresh
+    </button>
+  </header>
+
+  <main class="workspace" id="workspace">
+    <section class="pane editor-pane" id="editorPane">
+      <div class="pane-header">
+        <span>SOURCE</span>
+        <span id="charCount" class="muted">0 chars</span>
+      </div>
+      <div class="editor-wrap">
+        <pre id="lineNumbers" class="line-numbers"></pre>
+        <textarea id="editor" spellcheck="false" placeholder="Open an HTML file or paste code here..."></textarea>
+      </div>
+    </section>
+
+    <section class="pane preview-pane" id="previewPane">
+      <div class="pane-header">
+        <span>PREVIEW</span>
+        <button id="openTabSmall" class="btn btn-ghost btn-sm">Open ↗</button>
+      </div>
+      <iframe id="preview" title="preview" sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin"></iframe>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
